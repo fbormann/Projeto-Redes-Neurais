@@ -319,6 +319,7 @@ labels = training_data["IND_BOM_1_1"]
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense
+from keras.callbacks import EarlyStopping
 
 
 # In[51]:
@@ -357,6 +358,9 @@ classifier.summary()
 
 # In[56]:
 
+callbacks = [
+    EarlyStopping(monitor='val_loss', patience=3, verbose=0)
+]
 
 model = classifier.fit(X_train.as_matrix(), y_train.as_matrix())
 
